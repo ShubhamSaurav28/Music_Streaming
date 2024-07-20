@@ -104,8 +104,8 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>
-              <NavLink to="/explore">
-                Explore
+              <NavLink to="/streaming">
+                Live Stream
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>

@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import ContactUs from './pages/ContactUs'
+import Streaming from './pages/Streaming'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path="/contactus" element={<ContactUs/>}/>
+          <Route path="/streaming" element={<Streaming/>}/>
         </Route>
       </Routes>
     </>
