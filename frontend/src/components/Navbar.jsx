@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-// import Logo from '../assets/Logo.gif';
-// import LogoStatic from '../assets/LogoStatic.jpg';
+import Logo from '../assets/Logo.gif';
+import LogoStatic from '../assets/LogoStatic.jpg';
 // import { AppState } from '../context/UserContext';
 import axios from 'axios';
 import baseURL from '../../DB';
