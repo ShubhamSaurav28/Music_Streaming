@@ -1,25 +1,28 @@
 const express = require('express');
-const router = express.Router();
+const app = express();
 const Message = require('../models/Message');
 
-router.post('/send', async (req, res) => {
-  const { text, sender } = req.body;
+// Get all messages for a specific stream
+app.get('/:streamId', async (req, res) => {
   try {
-    const newMessage = new Message({ text, sender });
-    await newMessage.save();
-    res.status(201).json(newMessage);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const messages = await Message.find({ streamId: req.params.streamId });
+    res.json(messages);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/messages', async (req, res) => {
+// Post a new message
+app.post('/send', async (req, res) => {
+  const { text, sender, streamId } = req.body;
+  const message = new Message({ text, sender, streamId });
+  
   try {
-    const messages = await Message.find().sort({ timestamp: -1 });
-    res.status(200).json(messages);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const savedMessage = await message.save();
+    res.status(201).json(savedMessage);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 });
 
-module.exports = router;
+module.exports = app;

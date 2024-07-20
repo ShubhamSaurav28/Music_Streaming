@@ -114,6 +114,11 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>
+              <NavLink to="/createstream">
+                Create Stream
+              </NavLink>
+            </li>
+            <li className='hover:text-purple-500 font-semibold'>
               <NavLink to="/contactus">
                 Contact Us
               </NavLink>

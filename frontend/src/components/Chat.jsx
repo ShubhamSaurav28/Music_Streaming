@@ -1,35 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import baseURL from '../../DB';
-import { AppState } from '../context/UserContext';
 
-const Chat = () => {
+const Chat = ({ streamId }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const { user } = AppState();
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get(`${baseURL}/api/messages`);
-      console.log(response) // Ensure this URL is correct
+      const response = await axios.get(`${baseURL}/api/messages/${streamId}`);
       setMessages(response.data);
     } catch (err) {
       console.error('Error fetching messages:', err);
     }
   };
 
-
   useEffect(() => {
     fetchMessages();
     const interval = setInterval(fetchMessages, 5000); // Poll every 5 seconds
     return () => clearInterval(interval); // Cleanup on component unmount
-  }, []);
+  }, [streamId]);
 
   const sendMessage = async () => {
     if (message.trim()) {
       try {
-        const response = await axios.post(`${baseURL}/api/send`, { text: message, sender: user.username });
-        console.log(response);
+        await axios.post(`${baseURL}/api/messages/send`, { text: message, sender: 'User', streamId });
         setMessage('');
         fetchMessages();
       } catch (err) {
@@ -39,8 +34,8 @@ const Chat = () => {
   };
 
   return (
-    <div className="w-[40%] mx-auto p-4 border border-gray-300 rounded-lg shadow-lg h-[80vh] mt-[100px]">
-      <div className="h-[65vh] overflow-y-auto p-2 bg-gray-100 border border-gray-200 rounded-lg mb-4">
+    <div className="max-w-lg mx-auto my-4 p-4 border border-black rounded-lg shadow-lg">
+      <div className="h-96 overflow-y-auto p-2 bg-gray-100 border border-gray-200 rounded-lg mb-4">
         {messages.map((msg, index) => (
           <div key={index} className="mb-2 p-2 bg-white rounded-lg shadow-sm">
             <strong className="text-blue-500">{msg.sender}:</strong> {msg.text}
