@@ -5,6 +5,7 @@ import Layout from './Layout'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import ContactUs from './pages/ContactUs'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path="/contactus" element={<ContactUs/>}/>
         </Route>
       </Routes>
     </>
