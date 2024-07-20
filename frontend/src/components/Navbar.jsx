@@ -2,10 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../assets/Logo.gif';
 import LogoStatic from '../assets/LogoStatic.jpg';
-// import { AppState } from '../context/UserContext';
+import { AppState } from '../context/UserContext';
 import axios from 'axios';
 import baseURL from '../../DB';
-// import { tokenCheck } from '../HelperToken';
+import { tokenCheck } from '../HelperToken';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -17,13 +17,13 @@ export default function Navbar() {
   const [userId, setUserId] = useState(null)
   const [logoutMenu, setLogoutMenu] = useState(false);
   
-//   useEffect(() => {
-//       const token = tokenCheck();
-//       if (token) {
-//           setLoggedIn(true);
-//           setUserId(token.id);
-//       }
-//   }, [])
+  useEffect(() => {
+      const token = tokenCheck();
+      if (token) {
+          setLoggedIn(true);
+          setUserId(token.id);
+      }
+  }, [])
 
   const mousehover = () => {
     setIsHover(true);
@@ -33,23 +33,23 @@ export default function Navbar() {
     setIsHover(false);
   };
 
-//   useEffect(() => {
-//     const fetchProfilePic = async () => {
-//       if (userId) {
-//         try {
-//           const response = await axios.get(`${baseURL}/user/profile-pic/${userId}`);
-//           const newProfilePicUrl = response.data.profilePicUrl;
-//           if (profilePicUrl !== newProfilePicUrl) {
-//             setProfilePicUrl(newProfilePicUrl);
-//           }
-//         } catch (error) {
-//           console.error('Error fetching profile picture:', error);
-//         }
-//       }
-//     };
+  useEffect(() => {
+    const fetchProfilePic = async () => {
+      if (userId) {
+        try {
+          const response = await axios.get(`${baseURL}/user/profile-pic/${userId}`);
+          const newProfilePicUrl = response.data.profilePicUrl;
+          if (profilePicUrl !== newProfilePicUrl) {
+            setProfilePicUrl(newProfilePicUrl);
+          }
+        } catch (error) {
+          console.error('Error fetching profile picture:', error);
+        }
+      }
+    };
 
-//     fetchProfilePic();  
-//   }, [userId, profilePicUrl]);
+    fetchProfilePic();  
+  }, [userId, profilePicUrl]);
 
   const handleProfile = (e) => {
     console.log(menuRef.current);
@@ -62,7 +62,6 @@ export default function Navbar() {
   const handleSettings = () => {
     console.log('Settings clicked');
     setOpen(false);
-    // Add your settings navigation or functionality here
   }
 
   const handleLogout = () => {
@@ -78,8 +77,6 @@ export default function Navbar() {
         setOpen(false);
       }
     };
-    console.log(12)
-
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {

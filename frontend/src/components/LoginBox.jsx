@@ -26,7 +26,7 @@ export default function LoginBox() {
         setIsLoading(true);
         e.preventDefault();
         try {
-            let response = await axios.post(${baseURL}/user/login, data);
+            let response = await axios.post(`${baseURL}/user/login`, data);
             if (response && response.data) {
                 const token = response.data.token;
                 const decodedToken = parseJwt(token);
@@ -36,7 +36,7 @@ export default function LoginBox() {
                 //     cityName: decodedToken.cityName
                 // });
                 if (decodedToken) {
-                    window.localStorage.setItem('jobdekho', JSON.stringify(decodedToken));
+                    window.localStorage.setItem('musicstream', JSON.stringify(decodedToken));
                     setIsLoading(false);
                     navigate('/');
                     window.location.reload(false);

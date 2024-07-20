@@ -21,7 +21,7 @@ export default function SignUpBox() {
       setIsLoading(true);
       try {
         if(password===confirmPassword){
-          let response = await axios.post(${baseURL}/user/signup, data);
+          let response = await axios.post(`${baseURL}/user/signup`, data);
           if (response) {
               setIsLoading(false);
               navigate('/login');
