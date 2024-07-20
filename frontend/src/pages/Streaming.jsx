@@ -5,7 +5,7 @@ import Chat from '../components/Chat'
 export default function Streaming() {
   return (
     <>
-    <div cla>
+    <div className='flex border border-black justify-between'>
         <Stream/>
         <Chat/>
     </div>

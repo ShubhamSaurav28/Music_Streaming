@@ -109,8 +109,8 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>
-              <NavLink to="/playlists">
-                Playlists
+              <NavLink to="/allstreams">
+                All Streams
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>

@@ -39,8 +39,8 @@ const Chat = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto my-4 p-4 border border-gray-300 rounded-lg shadow-lg">
-      <div className="h-96 overflow-y-auto p-2 bg-gray-100 border border-gray-200 rounded-lg mb-4">
+    <div className="w-[40%] mx-auto p-4 border border-gray-300 rounded-lg shadow-lg h-[80vh] mt-[100px]">
+      <div className="h-[65vh] overflow-y-auto p-2 bg-gray-100 border border-gray-200 rounded-lg mb-4">
         {messages.map((msg, index) => (
           <div key={index} className="mb-2 p-2 bg-white rounded-lg shadow-sm">
             <strong className="text-blue-500">{msg.sender}:</strong> {msg.text}
