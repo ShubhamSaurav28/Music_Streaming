@@ -16,6 +16,7 @@ export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null)
   const [logoutMenu, setLogoutMenu] = useState(false);
+  
 //   useEffect(() => {
 //       const token = tokenCheck();
 //       if (token) {
@@ -23,7 +24,6 @@ export default function Navbar() {
 //           setUserId(token.id);
 //       }
 //   }, [])
-  
 
   const mousehover = () => {
     setIsHover(true);
@@ -65,13 +65,12 @@ export default function Navbar() {
     // Add your settings navigation or functionality here
   }
 
-  
-    const handleLogout = () => {
-        localStorage.removeItem('jobdekho');
-        setLoggedIn(false);
-        setLogoutMenu(false);
-        navigate('/login')
-    }
+  const handleLogout = () => {
+    localStorage.removeItem('musicstream');
+    setLoggedIn(false);
+    setLogoutMenu(false);
+    navigate('/login');
+  }
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -94,10 +93,10 @@ export default function Navbar() {
         <NavLink to="/">
           <div onMouseEnter={mousehover} onMouseLeave={mousenothover} className='ml-7 flex items-center gap-3'>
             {isHover
-              ? <img id='logoimg' src="" alt="JobDekho" className='h-[60px]' />
-              : <img id='logoimg' src="" alt="JobDekho" className='h-[60px]' />
+              ? <img id='logoimg' src={Logo} alt="MusicStream" className='h-[60px]' />
+              : <img id='logoimg' src={LogoStatic} alt="MusicStream" className='h-[60px]' />
             }
-            <p className='text-2xl font-semibold'><span className='text-red-400'>Job</span><span className='text-yellow-500'>Dekho</span></p>
+            <p className='text-2xl font-semibold'><span className='text-red-400'>Music</span><span className='text-yellow-500'>Stream</span></p>
           </div>
         </NavLink>
         <div className='flex w-[50%] justify-center'>
@@ -108,13 +107,13 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>
-              <NavLink to="/jobs">
-                Jobs
+              <NavLink to="/explore">
+                Explore
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>
-              <NavLink to="/employers">
-                Employers
+              <NavLink to="/playlists">
+                Playlists
               </NavLink>
             </li>
             <li className='hover:text-purple-500 font-semibold'>
@@ -148,7 +147,7 @@ export default function Navbar() {
             </NavLink>
             <Link to="/signup">
               <button className='border shadow-md rounded-2xl px-5 py-3 font-semibold hover:bg-black hover:text-white hover:duration-200'>
-                SignUp
+                Sign Up
               </button>
             </Link>
           </div>
